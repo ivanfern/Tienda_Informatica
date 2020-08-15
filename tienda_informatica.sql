@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-08-2020 a las 20:31:48
+-- Tiempo de generación: 15-08-2020 a las 01:35:01
 -- Versión del servidor: 5.6.21
 -- Versión de PHP: 5.6.3
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `tienda_informatica`
 --
-CREATE DATABASE IF NOT EXISTS `tienda_informatica` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `tienda_informatica`;
 
 -- --------------------------------------------------------
 
@@ -28,11 +26,18 @@ USE `tienda_informatica`;
 -- Estructura de tabla para la tabla `cestatus`
 --
 
-DROP TABLE IF EXISTS `cestatus`;
 CREATE TABLE IF NOT EXISTS `cestatus` (
 `id_estatus` int(11) NOT NULL,
   `estatus` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `cestatus`
+--
+
+INSERT INTO `cestatus` (`id_estatus`, `estatus`) VALUES
+(1, 'Activo'),
+(2, 'Baja');
 
 -- --------------------------------------------------------
 
@@ -40,11 +45,22 @@ CREATE TABLE IF NOT EXISTS `cestatus` (
 -- Estructura de tabla para la tabla `cmarca`
 --
 
-DROP TABLE IF EXISTS `cmarca`;
 CREATE TABLE IF NOT EXISTS `cmarca` (
 `id_marca` int(11) NOT NULL,
   `marca` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `cmarca`
+--
+
+INSERT INTO `cmarca` (`id_marca`, `marca`) VALUES
+(1, 'Lenovo'),
+(2, 'HP'),
+(3, 'Apple'),
+(4, 'Samsung'),
+(5, 'Xiaomi'),
+(6, 'TP-Link');
 
 -- --------------------------------------------------------
 
@@ -52,7 +68,6 @@ CREATE TABLE IF NOT EXISTS `cmarca` (
 -- Estructura de tabla para la tabla `compras`
 --
 
-DROP TABLE IF EXISTS `compras`;
 CREATE TABLE IF NOT EXISTS `compras` (
 `id_compra` int(11) NOT NULL,
   `proveedor` int(11) NOT NULL,
@@ -66,7 +81,6 @@ CREATE TABLE IF NOT EXISTS `compras` (
 -- Estructura de tabla para la tabla `cproveedor`
 --
 
-DROP TABLE IF EXISTS `cproveedor`;
 CREATE TABLE IF NOT EXISTS `cproveedor` (
 `id_proveedor` int(11) NOT NULL,
   `proveedor` int(11) NOT NULL
@@ -78,11 +92,20 @@ CREATE TABLE IF NOT EXISTS `cproveedor` (
 -- Estructura de tabla para la tabla `ctamano`
 --
 
-DROP TABLE IF EXISTS `ctamano`;
 CREATE TABLE IF NOT EXISTS `ctamano` (
 `id_tamano` int(11) NOT NULL,
   `tamano` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `ctamano`
+--
+
+INSERT INTO `ctamano` (`id_tamano`, `tamano`) VALUES
+(1, 'Grande'),
+(2, 'Mediano'),
+(3, 'Chico'),
+(4, 'Estandar');
 
 -- --------------------------------------------------------
 
@@ -90,11 +113,18 @@ CREATE TABLE IF NOT EXISTS `ctamano` (
 -- Estructura de tabla para la tabla `ctipousuario`
 --
 
-DROP TABLE IF EXISTS `ctipousuario`;
 CREATE TABLE IF NOT EXISTS `ctipousuario` (
 `id_tipo` int(11) NOT NULL,
   `tipo` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `ctipousuario`
+--
+
+INSERT INTO `ctipousuario` (`id_tipo`, `tipo`) VALUES
+(1, 'Cliente'),
+(2, 'Empleado');
 
 -- --------------------------------------------------------
 
@@ -102,7 +132,6 @@ CREATE TABLE IF NOT EXISTS `ctipousuario` (
 -- Estructura de tabla para la tabla `direcciones`
 --
 
-DROP TABLE IF EXISTS `direcciones`;
 CREATE TABLE IF NOT EXISTS `direcciones` (
 `id_direccion` int(11) NOT NULL,
   `usuario` int(11) NOT NULL,
@@ -122,7 +151,6 @@ CREATE TABLE IF NOT EXISTS `direcciones` (
 -- Estructura de tabla para la tabla `elementos_compra`
 --
 
-DROP TABLE IF EXISTS `elementos_compra`;
 CREATE TABLE IF NOT EXISTS `elementos_compra` (
 `id_elementoc` int(11) NOT NULL,
   `compra` int(11) NOT NULL,
@@ -137,7 +165,6 @@ CREATE TABLE IF NOT EXISTS `elementos_compra` (
 -- Estructura de tabla para la tabla `elementos_ticket`
 --
 
-DROP TABLE IF EXISTS `elementos_ticket`;
 CREATE TABLE IF NOT EXISTS `elementos_ticket` (
 `id_elemento` int(11) NOT NULL,
   `ticket` int(11) NOT NULL,
@@ -151,16 +178,24 @@ CREATE TABLE IF NOT EXISTS `elementos_ticket` (
 -- Estructura de tabla para la tabla `productos`
 --
 
-DROP TABLE IF EXISTS `productos`;
 CREATE TABLE IF NOT EXISTS `productos` (
 `id_producto` int(11) NOT NULL,
   `nombre_producto` varchar(100) NOT NULL,
   `marca` int(11) NOT NULL,
   `tamaño` int(11) NOT NULL,
   `existencia` int(11) NOT NULL,
-  `descripcion_gen` int(11) NOT NULL,
-  `costo` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `descripcion_gen` varchar(500) NOT NULL,
+  `costo` float NOT NULL,
+  `rutaimg` varchar(250) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `productos`
+--
+
+INSERT INTO `productos` (`id_producto`, `nombre_producto`, `marca`, `tamaño`, `existencia`, `descripcion_gen`, `costo`, `rutaimg`) VALUES
+(2, 'Laptop', 1, 1, 5, 'Lap Top 1TB en disco duro', 5700, 'https://www.lenovo.com/medias/lenovo-laptop-thinkpad-t490-hero-1126.png?context=bWFzdGVyfHJvb3R8Nzg4OTN8aW1hZ2UvcG5nfGg5Ni9oYTcvMTA2NzMyMDYyNjM4MzgucG5nfDllOTUyNGM1OGYxNjkxNGU2ZTMxNWQxMTE1NDQ0MGZkNDU4ZWYwOWExZWZjMDJkMDRiZTIwYjc0OGE5NGUwMzA'),
+(3, 'Impresora', 2, 4, 12, 'Impresora Jet de alta definicion', 2500, 'https://www.tecnodigitalinsumos.com.ar/253-large_default/hp-laserjet-pro-m12w-wifi.jpg');
 
 -- --------------------------------------------------------
 
@@ -168,7 +203,6 @@ CREATE TABLE IF NOT EXISTS `productos` (
 -- Estructura de tabla para la tabla `ticket`
 --
 
-DROP TABLE IF EXISTS `ticket`;
 CREATE TABLE IF NOT EXISTS `ticket` (
 `id_ticket` int(11) NOT NULL,
   `importe` float NOT NULL,
@@ -182,7 +216,6 @@ CREATE TABLE IF NOT EXISTS `ticket` (
 -- Estructura de tabla para la tabla `usuarios`
 --
 
-DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE IF NOT EXISTS `usuarios` (
 `id_usuario` int(11) NOT NULL,
   `nombre` text NOT NULL,
@@ -193,7 +226,14 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `fecha_alta` date NOT NULL,
   `id_estatus` int(11) NOT NULL,
   `id_tipo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id_usuario`, `nombre`, `apellido_p`, `apellido_m`, `mail`, `password`, `fecha_alta`, `id_estatus`, `id_tipo`) VALUES
+(1, 'IVAN', 'FERNANDEZ', 'VAL', '15065528@alumnos.icel.edu.mx', 'icelermita', '2020-08-13', 1, 1);
 
 --
 -- Índices para tablas volcadas
@@ -279,12 +319,12 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `cestatus`
 --
 ALTER TABLE `cestatus`
-MODIFY `id_estatus` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `id_estatus` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `cmarca`
 --
 ALTER TABLE `cmarca`
-MODIFY `id_marca` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `id_marca` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `compras`
 --
@@ -299,12 +339,12 @@ MODIFY `id_proveedor` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT de la tabla `ctamano`
 --
 ALTER TABLE `ctamano`
-MODIFY `id_tamano` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `id_tamano` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `ctipousuario`
 --
 ALTER TABLE `ctipousuario`
-MODIFY `id_tipo` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `id_tipo` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `direcciones`
 --
@@ -324,7 +364,7 @@ MODIFY `id_elemento` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `ticket`
 --
@@ -334,7 +374,7 @@ MODIFY `id_ticket` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- Restricciones para tablas volcadas
 --
